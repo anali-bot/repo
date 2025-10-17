@@ -1,0 +1,16 @@
+{
+  "1": {
+    "email": "admin@wayme.fr",
+    "username": "admin",
+    "password": "8d969eef6ecad3c29a3a873fba2d9b81cabc4d6acf5b2aa47ee6eda01de5f0e5",
+    "created_at": "2024-01-15T10:00:00.000000",
+    "updated_at": "2024-01-15T10:00:00.000000"
+  },
+  "2": {
+    "email": "user@example.com",
+    "username": "john_doe",
+    "password": "6b3a55e0c69f19611e15e053d6c3aa5ec3a63c23d7416e8342c8f71f0663d40f",
+    "created_at": "2024-01-15T11:30:00.000000",
+    "updated_at": "2024-01-15T11:30:00.000000"
+  }
+}

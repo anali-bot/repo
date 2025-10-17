@@ -10,21 +10,245 @@
     <!-- Écran de connexion -->
     <div id="login-screen" class="login-screen">
         <div class="login-container">
-            <h1>Connexion</h1>
-            <form id="login-form">
-                <div class="form-group">
-                    <input type="text" id="username" placeholder="Nom d'utilisateur" required>
+            <!-- Formulaire de Connexion -->
+            <div id="login-form-div" class="form-container">
+                <h1>Connexion</h1>
+                <form id="login-form">
+                    <div class="form-group">
+                        <input type="text" id="username" placeholder="Nom d'utilisateur" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" placeholder="Mot de passe" required>
+                    </div>
+                    <button type="submit" class="login-btn">Se connecter</button>
+                </form>
+                <div class="form-footer">
+                    <p>Pas encore de compte ? <a href="#" id="toggle-signup" class="toggle-link">Je veux m'inscrire</a></p>
                 </div>
-                <div class="form-group">
-                    <input type="password" id="password" placeholder="Mot de passe" required>
+            </div>
+
+            <!-- Formulaire d'Inscription (Caché par défaut) -->
+            <div id="signup-form-div" class="form-container hidden">
+                <h1>Créer un compte</h1>
+                <form id="signup-form">
+                    <div class="form-group">
+                        <input type="email" id="signup-email" placeholder="Adresse e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="signup-username" placeholder="Nom d'utilisateur" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signup-password" placeholder="Mot de passe" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signup-confirm" placeholder="Confirmer le mot de passe" required>
+                    </div>
+                    <button type="submit" class="login-btn">S'inscrire</button>
+                </form>
+                <div class="form-footer">
+                    <p>Vous avez déjà un compte ? <a href="#" id="toggle-login" class="toggle-link">Se connecter</a></p>
                 </div>
-                <button type="submit" class="login-btn">Se connecter</button>
-            </form>
+                <div id="signup-message" class="message"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Profil (Caché par défaut) -->
+    <div id="profile-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-modal" class="close-modal">&times;</button>
+            
+            <!-- Profil Section -->
+            <div class="profile-header">
+                <div class="profile-picture-container">
+                    <img id="profile-img" src="https://via.placeholder.com/150?text=Avatar" alt="Profil" class="profile-picture">
+                    <button id="change-picture-btn" class="change-picture-btn">📸</button>
+                </div>
+                <div class="profile-info">
+                    <h2 id="profile-username">Utilisateur</h2>
+                    <p id="profile-email">email@example.com</p>
+                    <div id="profile-roles" class="profile-roles">
+                        <!-- Les rôles s'afficheront ici -->
+                    </div>
+                    <small id="profile-created">Créé le: 2024-01-01</small>
+                </div>
+            </div>
+
+            <!-- Onglets -->
+            <div class="profile-tabs">
+                <button class="tab-btn active" data-tab="photo">Photo</button>
+                <button class="tab-btn" data-tab="associations">Associations</button>
+                <button class="tab-btn" data-tab="roles">Rôles</button>
+                <button class="tab-btn" data-tab="users">Utilisateurs</button>
+            </div>
+
+            <!-- Tab Photo -->
+            <div id="photo-tab" class="tab-content active">
+                <div class="photo-section">
+                    <h3>Changer votre photo de profil</h3>
+                    
+                    <!-- Upload Custom -->
+                    <div class="upload-section">
+                        <label for="photo-upload">📁 Uploader une photo:</label>
+                        <input type="file" id="photo-upload" accept="image/*">
+                        <button id="upload-photo-btn" class="action-btn">Télécharger</button>
+                    </div>
+
+                    <!-- Avatars Prédéfinis -->
+                    <div class="avatars-section">
+                        <h4>Ou choisir un avatar:</h4>
+                        <div class="avatars-grid" id="avatars-grid">
+                            <!-- Les avatars seront générés en JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Associations -->
+            <div id="associations-tab" class="tab-content">
+                <div class="associations-section">
+                    <h3>Mes Associations</h3>
+                    <p class="subtitle">Associez vos comptes aux plateformes WayMe</p>
+                    
+                    <!-- Ajouter une association -->
+                    <div class="add-association">
+                        <select id="platform-select" class="form-select">
+                            <option value="">Sélectionner une plateforme...</option>
+                            <option value="youtube">YouTube</option>
+                            <option value="twitch">Twitch</option>
+                            <option value="netflix">Netflix</option>
+                            <option value="discord">Discord</option>
+                            <option value="twitter">Twitter</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="steam">Steam</option>
+                            <option value="epic">Epic Games</option>
+                            <option value="gog">GOG</option>
+                            <option value="rockstar">Rockstar Games</option>
+                            <option value="ea">EA Play</option>
+                            <option value="heroic">Heroic</option>
+                            <option value="proxmox">Proxmox</option>
+                            <option value="virtualbox">VirtualBox</option>
+                            <option value="vmware">VMware</option>
+                        </select>
+                        <input type="text" id="account-input" placeholder="Votre identifiant/email" class="form-input">
+                        <button id="add-association-btn" class="action-btn">Ajouter</button>
+                    </div>
+
+                    <!-- Liste des associations -->
+                    <div class="associations-list" id="associations-list">
+                        <!-- Les associations seront affichées ici -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Rôles -->
+            <div id="roles-tab" class="tab-content">
+                <div class="roles-section">
+                    <h3>Vos Rôles</h3>
+                    <p class="subtitle">Rôles attribués à votre compte</p>
+                    
+                    <!-- Liste des rôles -->
+                    <div class="roles-list" id="roles-list">
+                        <!-- Les rôles seront affichés ici -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Utilisateurs -->
+            <div id="users-tab" class="tab-content">
+                <div class="users-section">
+                    <h3>Utilisateurs</h3>
+                    <p class="subtitle">Recherchez d'autres utilisateurs</p>
+                    
+                    <!-- Barre de recherche -->
+                    <div class="search-bar">
+                        <input type="text" id="user-search-input" placeholder="🔍 Chercher un utilisateur..." class="form-input">
+                    </div>
+
+                    <!-- Liste des utilisateurs -->
+                    <div class="users-list" id="users-list">
+                        <!-- Les utilisateurs seront affichés ici -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Profil Public (pour voir les autres utilisateurs) -->
+    <div id="public-profile-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-public-modal" class="close-modal">&times;</button>
+            
+            <!-- Profil Section -->
+            <div class="profile-header">
+                <div class="profile-picture-container">
+                    <img id="public-profile-img" src="https://via.placeholder.com/150?text=Avatar" alt="Profil" class="profile-picture">
+                </div>
+                <div class="profile-info">
+                    <h2 id="public-profile-username">Utilisateur</h2>
+                    <p id="public-profile-email">email@example.com</p>
+                    <div id="public-profile-roles" class="profile-roles">
+                        <!-- Les rôles s'afficheront ici -->
+                    </div>
+                    <small id="public-profile-created">Créé le: 2024-01-01</small>
+                </div>
+            </div>
+
+            <!-- Onglets -->
+            <div class="profile-tabs">
+                <button class="public-tab-btn active" data-tab="public-associations">Associations</button>
+                <button class="public-tab-btn" data-tab="public-roles">Rôles</button>
+            </div>
+
+            <!-- Tab Associations -->
+            <div id="public-associations-tab" class="tab-content active">
+                <div class="associations-section">
+                    <h3>Associations</h3>
+                    <p class="subtitle">Comptes liés aux plateformes</p>
+                    
+                    <!-- Liste des associations -->
+                    <div class="associations-list" id="public-associations-list">
+                        <!-- Les associations seront affichées ici -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Rôles -->
+            <div id="public-roles-tab" class="tab-content">
+                <div class="roles-section">
+                    <h3>Rôles</h3>
+                    <p class="subtitle">Rôles du compte</p>
+                    
+                    <!-- Liste des rôles -->
+                    <div class="roles-list" id="public-roles-list">
+                        <!-- Les rôles seront affichés ici -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Contenu principal (caché jusqu'à la connexion) -->
     <div id="main-content" class="main-content hidden">
+    
+    <!-- User Menu (Top Right) -->
+    <div class="user-menu">
+        <button id="user-btn" class="user-btn" title="Profil">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span id="username-display">user</span>
+        </button>
+        <button id="logout-btn" class="logout-btn" title="Déconnexion">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+        </button>
+    </div>
+
     <div class="container">
         <header>
             <h1>WayMe.fr</h1>
@@ -43,7 +267,7 @@
                 </a>
                 <a href="https://www.twitch.tv" target="_blank" class="link-card">
                     <div class="logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Twitch_Glitch_Logo_Purple.svg/1024px-Twitch_Glitch_Logo_Purple.svg.png" alt="Twitch">
+                        <img src="https://www.twitch.tv/favicon.ico" alt="Twitch">
                     </div>
                     <span>Twitch</span>
                 </a>
@@ -62,19 +286,19 @@
             <div class="links-grid">
                 <a href="https://www.rockstargames.com" target="_blank" class="link-card">
                     <div class="logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Rockstar_Games_logo.svg" alt="Rockstar Games">
+                        <img src="https://cdn.worldvectorlogo.com/logos/rockstar-games.svg" alt="Rockstar Games">
                     </div>
                     <span>Rockstar Games</span>
                 </a>
                 <a href="https://www.epicgames.com" target="_blank" class="link-card">
                     <div class="logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Epic_Games_logo.svg" alt="Epic Games">
+                        <img src="https://www.epicgames.com/favicon.ico" alt="Epic Games">
                     </div>
                     <span>Epic Games</span>
                 </a>
                 <a href="https://www.steampowered.com" target="_blank" class="link-card">
                     <div class="logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_logo.png/1024px-Steam_logo.png" alt="Steam">
+                        <img src="https://cdn.worldvectorlogo.com/logos/steam.svg" alt="Steam">
                     </div>
                     <span>Steam</span>
                 </a>
@@ -93,13 +317,13 @@
                 </a>
                 <a href="https://www.gog.com" target="_blank" class="link-card">
                     <div class="logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/GOG.com_logo.svg" alt="GOG">
+                        <img src="https://www.gog.com/favicon.ico" alt="GOG">
                     </div>
                     <span>GOG</span>
                 </a>
                 <a href="https://www.ea.com" target="_blank" class="link-card">
                     <div class="logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Electronic_Arts_logo.svg" alt="EA Play">
+                        <img src="https://cdn.worldvectorlogo.com/logos/electronic-arts-2.svg" alt="EA Play">
                     </div>
                     <span>EA Play</span>
                 </a>
@@ -112,7 +336,7 @@
             <div class="links-grid">
                 <a href="https://www.discord.com" target="_blank" class="link-card">
                     <div class="logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Discord_logo.svg/1200px-Discord_logo.svg.png" alt="Discord">
+                        <img src="https://cdn.worldvectorlogo.com/logos/discord-6.svg" alt="Discord">
                     </div>
                     <span>Discord</span>
                 </a>
@@ -130,9 +354,51 @@
                 </a>
             </div>
         </section>
+
+        <!-- Catégorie: Machine Virtuel en Live -->
+        <section class="category">
+            <h2>Machine Virtuel en Live</h2>
+            <div class="links-grid">
+                <a href="https://www.vmware.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/vmware.svg" alt="VMware">
+                    </div>
+                    <span>VMware</span>
+                </a>
+                <a href="https://www.virtualbox.org" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://cdn.worldvectorlogo.com/logos/virtualbox.svg" alt="VirtualBox">
+                    </div>
+                    <span>VirtualBox</span>
+                </a>
+                <a href="https://www.proxmox.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://cdn.worldvectorlogo.com/logos/proxmox.svg" alt="Proxmox">
+                    </div>
+                    <span>Proxmox</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Simulateur Linux -->
+        <section class="category">
+            <h2>Simulateur Linux 🐧</h2>
+            <div id="terminal-container" class="terminal-container">
+                <div id="terminal-output" class="terminal-output">
+                    <div style="color: #00ff00;">Bienvenue dans le simulateur Linux!</div>
+                    <div>Tape 'help' pour voir les commandes disponibles.</div>
+                    <div></div>
+                </div>
+                <div class="terminal-prompt">
+                    <span style="color: #00ff00;">user@simulator</span>:<span style="color: #0088ff;">/home/user</span>$
+                    <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false">
+                </div>
+            </div>
+        </section>
     </div>
     </div>
 
     <script src="script.js"></script>
+    <script src="terminal.js"></script>
 </body>
 </html>
