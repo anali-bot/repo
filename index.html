@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WayMe.fr - Vos Liens en un Clic</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Écran de connexion -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-container">
+            <h1>Connexion</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" placeholder="Nom d'utilisateur" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Mot de passe" required>
+                </div>
+                <button type="submit" class="login-btn">Se connecter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contenu principal (caché jusqu'à la connexion) -->
+    <div id="main-content" class="main-content hidden">
+    <div class="container">
+        <header>
+            <h1>WayMe.fr</h1>
+            <p>Accédez à vos plateformes préférées</p>
+        </header>
+
+        <!-- Catégorie: Streaming et Vidéo -->
+        <section class="category">
+            <h2>Streaming & Vidéo</h2>
+            <div class="links-grid">
+                <a href="https://www.youtube.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1024px-YouTube_full-color_icon_%282017%29.svg.png" alt="YouTube">
+                    </div>
+                    <span>YouTube</span>
+                </a>
+                <a href="https://www.twitch.tv" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Twitch_Glitch_Logo_Purple.svg/1024px-Twitch_Glitch_Logo_Purple.svg.png" alt="Twitch">
+                    </div>
+                    <span>Twitch</span>
+                </a>
+                <a href="https://www.netflix.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
+                    </div>
+                    <span>Netflix</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Catégorie: Jeux -->
+        <section class="category">
+            <h2>Jeux & Gaming</h2>
+            <div class="links-grid">
+                <a href="https://www.rockstargames.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Rockstar_Games_logo.svg" alt="Rockstar Games">
+                    </div>
+                    <span>Rockstar Games</span>
+                </a>
+                <a href="https://www.epicgames.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Epic_Games_logo.svg" alt="Epic Games">
+                    </div>
+                    <span>Epic Games</span>
+                </a>
+                <a href="https://www.steampowered.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_logo.png/1024px-Steam_logo.png" alt="Steam">
+                    </div>
+                    <span>Steam</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Catégorie: Plateforme de Jeux -->
+        <section class="category">
+            <h2>Plateforme de Jeux</h2>
+            <div class="links-grid">
+                <a href="https://www.heroicgames.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://raw.githubusercontent.com/Heroic-Games-Launcher/HeroicGamesLauncher/main/public/icon.png" alt="Heroic">
+                    </div>
+                    <span>Heroic</span>
+                </a>
+                <a href="https://www.gog.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/GOG.com_logo.svg" alt="GOG">
+                    </div>
+                    <span>GOG</span>
+                </a>
+                <a href="https://www.ea.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Electronic_Arts_logo.svg" alt="EA Play">
+                    </div>
+                    <span>EA Play</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Catégorie: Réseaux Sociaux -->
+        <section class="category">
+            <h2>Réseaux Sociaux</h2>
+            <div class="links-grid">
+                <a href="https://www.discord.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Discord_logo.svg/1200px-Discord_logo.svg.png" alt="Discord">
+                    </div>
+                    <span>Discord</span>
+                </a>
+                <a href="https://www.twitter.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter">
+                    </div>
+                    <span>Twitter</span>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" class="link-card">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1024px-Instagram_logo_2016.svg.png" alt="Instagram">
+                    </div>
+                    <span>Instagram</span>
+                </a>
+            </div>
+        </section>
+    </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
