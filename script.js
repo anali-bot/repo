@@ -19,8 +19,10 @@ const signupFormDiv = document.getElementById('signup-form-div');
 const toggleSignupBtn = document.getElementById('toggle-signup');
 const toggleLoginBtn = document.getElementById('toggle-login');
 
-// URL de l'API Python (à adapter selon votre configuration)
-const API_URL = 'http://localhost:5000';
+// URL de l'API Python - Détecte automatiquement local vs production
+const API_URL = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1')
+    ? 'http://localhost:5000'
+    : window.location.origin; // Même serveur en production
 
 // ===== ÉVÉNEMENTS DE BASCULEMENT LOGIN/SIGNUP =====
 toggleSignupBtn.addEventListener('click', (e) => {
