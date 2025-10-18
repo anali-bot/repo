@@ -25,6 +25,13 @@ except ImportError:
 app = Flask(__name__, static_folder='.', static_url_path='/')
 CORS(app)
 
+# WhiteNoise pour servir les fichiers statiques en production avec gunicorn
+try:
+    from whitenoise import WhiteNoise
+    app.wsgi_app = WhiteNoise(app.wsgi_app, root='.', index_file=True)
+except ImportError:
+    pass
+
 # ===== DÉTECTION ENVIRONNEMENT =====
 IS_PRODUCTION = os.environ.get('ENVIRONMENT', 'development') == 'production'
 PORT = int(os.environ.get('PORT', 5000))
